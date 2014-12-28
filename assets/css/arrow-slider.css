@@ -26,7 +26,7 @@ body{
     position: relative;
     display: inline;
     float: left;
-    font-family: \5fae\8f6f\96c5\9ed1, \5b8b\4f53, Hiragino Sans GB, tahoma, arial;
+    font-family: '\5fae\8f6f\96c5\9ed1', '\5b8b\4f53', 'Hiragino Sans GB', tahoma, arial;
     word-break: break-all;
     word-wrap: break-word;
 }
