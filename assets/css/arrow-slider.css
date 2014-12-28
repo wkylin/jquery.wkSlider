@@ -1,0 +1,250 @@
+body{
+    padding:0;
+    margin:0;
+}
+.arrow-slider-content {
+    position: relative;
+    padding: 0;
+    margin: 30px auto;
+}
+
+.arrow-slider {
+    position: relative;
+    padding: 0;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.arrow-slider-box {
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+.arrow-slider-box li {
+    position: relative;
+    display: inline;
+    float: left;
+    font-family: \5fae\8f6f\96c5\9ed1, \5b8b\4f53, Hiragino Sans GB, tahoma, arial;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+
+.arrow-slider-box li img {
+    display: block;
+}
+
+.arrow-slider-box li span {
+    padding-left: 5px;
+    font-size: 30px;
+    color: #de0000;
+}
+
+.ft-size-mid {
+    font-size: 24px;
+}
+
+.arrow-slider-left,
+.arrow-slider-left-hover,
+.arrow-slider-right,
+.arrow-slider-right-hover {
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    background: url(../image/arrow-slider-icons.png) 0 0 no-repeat transparent;
+    display:none;
+    font-size: 0;
+    line-height: 0;
+    z-index: 9999;
+}
+
+.arrow-slider-left,
+.arrow-slider-left-hover {
+    background-position: 0 0;
+}
+
+.arrow-slider-left-hover {
+    background-position: 0 -144px;
+}
+
+.arrow-slider-right,
+.arrow-slider-right-hover {
+    background-position: 0 -48px;
+}
+
+.arrow-slider-right-hover {
+    background-position: 0 -96px;
+}
+
+.slider-tips,
+.slider-error-tips {
+    position: absolute;
+    bottom: 0;
+    height: 30px;
+    overflow: hidden;
+    line-height: 30px;
+    color: #fff;
+    text-align: left;
+    text-indent: 1em;
+    background-color: #000;
+    opacity: 0.8;
+    filter: alpha(opacity=80);
+    padding: 5px 0;
+}
+
+.slider-total {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 30px;
+    overflow: hidden;
+    line-height: 30px;
+    color: #fff;
+}
+
+.slider-total span.slider-items {
+    padding: 0 10px 0 0;
+}
+
+
+
+ .slider-markers-box {
+    width: 100%;
+    text-align: center;
+    overflow: hidden;
+    padding: 10px 0;
+}
+
+ .slider-markers {
+    float: left;
+    position: relative;
+    left: 50%;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-align:center;
+}
+
+.slider-markers li{
+    font-size: 12px;
+    overflow: hidden;
+    cursor:pointer;
+    list-style: none;
+    float: left;
+    margin: 5px;
+    position: relative;
+    right: 50%;
+    text-align:center;
+}
+
+.slider-inner .slider-markers-box {
+    position: absolute;
+    bottom: 0;
+/*    background-color: #000;
+    filter: alpha(opacity=80);
+    opacity: 0.8;*/
+    margin: 0;
+}
+
+.slider-outer .slider-markers-box {
+    margin: 5px 0;
+}
+
+.slider-dot .slider-markers li {
+    padding: 0 2px;
+    width: 6px;
+    height: 10px;
+    border: solid 1px #666;
+    background-color: #666;
+    border-radius: 10px;
+    text-indent: -9999em;
+}
+
+.slider-dot .slider-markers li.active-marker {
+    color: #fff;
+    background-color: #952210;
+    border: 1px solid #952210;
+}
+
+.slider-figure .slider-markers li {
+    height: 16px;
+    padding:0 5px;
+    line-height: 16px;
+    border: solid 1px #eee;
+    background-color: #eee;
+    color:#000;
+    z-index: 10;
+}
+
+.slider-figure .slider-markers li.active-marker {
+    color: #fff;
+    background-color: #952210;
+    border: 1px solid #952210;
+}
+
+
+/* slider-rectangle */
+.slider-rectangle .slider-markers li {
+    width: 50px;
+    height: 5px;
+    text-indent:-9999em;
+    background-color:#666;
+    border: solid 1px #666;
+}
+
+.slider-rectangle .slider-markers li.active-marker {
+    color: #fff;
+    background-color: #952210;
+    border: 1px solid #952210;
+}
+
+
+.arrow-slider .slider-text{
+    padding:10px;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+
+
+/* magnifier */
+
+.magnifier-mark{
+    width:600px;
+    height:203px;
+    position:absolute;
+    background-color:#000;
+    opacity:0;
+    top:0;
+    left:0;
+    z-index: 3;
+}
+
+.magnifier-float{
+    background: none repeat scroll 0 0 #ff6600;
+    height: 100px;
+    width: 200px;
+    opacity: 0.5;
+    position: absolute;
+    z-index: 1;
+    cursor:move;
+    display:none;
+}
+
+.magnifier-box{
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 610px;
+    width: 330px;
+    height: 165px;
+    z-index: 1;
+    display:none;
+}
+.magnifier-box img{
+    display:block;
+    position:absolute;
+}
