@@ -1,25 +1,23 @@
 // 为requirejs 模块名做全局配置
-// 此处配置与打包配置无关（官方解释）
-// 打包配置，需要重写，写在了gruntfile.js中
-// 请保持两处命名一致
+
 requirejs.config({
     baseUrl: './js',
     paths: {
         'jquery': 'libs/jquery-1.8.2',
-        'slider': 'app/jquery.slider'
+        'wkSlider': 'app/jquery.wkSlider'
     }
 });
 // 非AMD模块配置
 requirejs.config({
     shim: {
-        'slider': {
+        'wkSlider': {
             deps: ['jquery'],
-            exports: 'jQuery.fn.slider'
+            exports: 'jQuery.fn.wkSlider'
         }
     }
 });
 
-requirejs([ 'jquery', 'slider'], function ($) {
+requirejs([ 'jquery', 'wkSlider'], function ($) {
     $(function () {
 
         $('#J_Slider').wkSlider({
@@ -32,14 +30,35 @@ requirejs([ 'jquery', 'slider'], function ($) {
             showType:true,
             typePosition: "outer",
             magnifier:{
-                "isShow":true
+                "isShow":true,
+                "azimuth":"left",
+                "magWidth":"150",
+                "magHeight":"100"
+            }
+        });
+
+        $('#J_mySlider').wkSlider({
+            type: 'figure',
+            direction: "left",
+            showArrow: true,
+            hoverShowArrow:true,
+            auto: false,
+            showAmount:false,
+            showType:true,
+            typePosition: "outer",
+            magnifier:{
+                "isShow":true,
+                "azimuth":"right",
+                "magWidth":"100",
+                "magHeight":"100"
             }
         });
 
         $('#J_SliderText').wkSlider({
             showArrow: false,
             showType:false,
-            typePosition: "outer"
+            typePosition: "outer",
+            auto:false
         });
     });
 });

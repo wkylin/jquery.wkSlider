@@ -221,27 +221,23 @@ body{
     top:0;
     left:0;
     z-index: 3;
-}
-
-.magnifier-float{
-    background: none repeat scroll 0 0 #ff6600;
-    height: 100px;
-    width: 200px;
-    opacity: 0.5;
-    position: absolute;
-    z-index: 1;
     cursor:move;
-    display:none;
 }
 
 .magnifier-box{
     overflow: hidden;
     position: absolute;
     top: 0;
-    left: 610px;
-    width: 330px;
-    height: 165px;
     z-index: 1;
+    display:none;
+}
+
+.magnifier-float{
+    background: none repeat scroll 0 0 #ff6600;
+    opacity: 0.5;
+    position: absolute;
+    z-index: 1;
+    cursor:move;
     display:none;
 }
 .magnifier-box img{
