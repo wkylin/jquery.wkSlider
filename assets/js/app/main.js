@@ -23,10 +23,6 @@ requirejs([ 'jquery', 'wkSlider'], function ($) {
         $('#J_Slider').wkSlider({
             type: 'figure',
             direction: "left",
-            showArrow: true,
-            hoverShowArrow:true,
-            auto: false,
-            showAmount:false,
             showType:true,
             typePosition: "outer",
             magnifier:{
@@ -47,10 +43,7 @@ requirejs([ 'jquery', 'wkSlider'], function ($) {
             showType:true,
             typePosition: "outer",
             magnifier:{
-                "isShow":true,
-                "azimuth":"right",
-                "magWidth":"100",
-                "magHeight":"100"
+                "isShow":true
             }
         });
 

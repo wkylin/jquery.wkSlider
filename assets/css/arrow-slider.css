@@ -144,9 +144,9 @@ body{
 .slider-inner .slider-markers-box {
     position: absolute;
     bottom: 0;
-/*    background-color: #000;
+    background-color: #000;
     filter: alpha(opacity=80);
-    opacity: 0.8;*/
+    opacity: 0.8;
     margin: 0;
 }
 
@@ -218,6 +218,7 @@ body{
     position:absolute;
     background-color:#000;
     opacity:0;
+    filter: alpha(opacity=0);
     top:0;
     left:0;
     z-index: 3;
@@ -235,6 +236,7 @@ body{
 .magnifier-float{
     background: none repeat scroll 0 0 #ff6600;
     opacity: 0.5;
+    filter: alpha(opacity=50);
     position: absolute;
     z-index: 1;
     cursor:move;
