@@ -125,8 +125,8 @@
                                         //$sliderUl.find("li:first").addClass("cur");
 
                                         //放大镜效果
-                                        if (options.typePosition == "outer") {
-                                            if (opts.magnifier.isShow) {
+                                        if (options.typePosition == "outer" && opts.showSize==1) {
+                                            if(opts.magnifier.isShow){
                                                 magnifier();
                                             }
                                         }
@@ -140,8 +140,8 @@
                                         // $sliderUl.find("li:first").addClass("cur");
 
                                         //放大镜效果
-                                        if (options.typePosition == "outer") {
-                                            if (opts.magnifier.isShow) {
+                                        if (options.typePosition == "outer" && opts.showSize==1) {
+                                            if(opts.magnifier.isShow){
                                                 magnifier();
                                             }
                                         }
@@ -205,7 +205,7 @@
             }
 
             //放大镜效果
-            if (options.typePosition == "outer") {
+            if (options.typePosition == "outer" && opts.showSize==1) {
                 if(opts.magnifier.isShow){
                     magnifier();
                 }
@@ -297,8 +297,8 @@
                         $sliderUl.animate({left: '+=' + $sliderItem.outerWidth(true) * opts.offsetSize}, opts.speed, function () {
                             $sliderUl.css({"left": 0});
                             //放大镜效果
-                            if (options.typePosition == "outer") {
-                                if (opts.magnifier.isShow) {
+                            if (options.typePosition == "outer" && opts.showSize==1) {
+                                if(opts.magnifier.isShow){
                                     magnifier();
                                 }
                             }
@@ -329,8 +329,8 @@
                         $sliderUl.animate({ left: '-=' + $sliderItem.outerWidth(true) * opts.offsetSize}, opts.speed, function () {
                             $sliderUl.css({"left": 0}).find("li:lt(" + opts.offsetSize + ")").appendTo($sliderUl);
                             //放大镜效果
-                            if (options.typePosition == "outer") {
-                                if (opts.magnifier.isShow) {
+                            if (options.typePosition == "outer" && opts.showSize==1) {
+                                if(opts.magnifier.isShow){
                                     magnifier();
                                 }
                             }
@@ -451,8 +451,8 @@
                         $self.css({"left": 0}).find("li:lt(" + opts.offsetSize + ")").appendTo($self);
 
                         //放大镜效果
-                        if (options.typePosition == "outer") {
-                            if (opts.magnifier.isShow) {
+                        if (options.typePosition == "outer" && opts.showSize==1) {
+                            if(opts.magnifier.isShow){
                                 magnifier();
                             }
                         }
@@ -469,8 +469,8 @@
                     $sliderUl.stop().animate({left: '+=' + $sliderItem.outerWidth(true) * opts.offsetSize}, opts.speed, function () {
                         $sliderUl.css({"left": 0});
                         //放大镜效果
-                        if (options.typePosition == "outer") {
-                            if (opts.magnifier.isShow) {
+                        if (options.typePosition == "outer" && opts.showSize==1) {
+                            if(opts.magnifier.isShow){
                                 magnifier();
                             }
                         }

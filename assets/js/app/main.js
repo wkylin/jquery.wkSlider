@@ -22,7 +22,6 @@ requirejs([ 'jquery', 'wkSlider'], function ($) {
 
         $('#J_Slider').wkSlider({
             type: 'figure',
-            direction: "left",
             showType:true,
             typePosition: "outer",
             magnifier:{
