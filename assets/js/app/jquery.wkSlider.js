@@ -414,9 +414,8 @@
                     $mfBig.css({"left":($curMagnifier.width()+10)});
                 }
                 $mfMark.on("mousemove",function(event){
-
-                    var left = event.clientX - $sliderView.offset().left  - $mfFloat.width() / 2;
-                    var top = event.clientY - $sliderView.offset().top  - $mfFloat.height() / 2;
+                    var left = event.clientX - ($sliderView.offset().left-$(document).scrollLeft())  - $mfFloat.width() / 2;
+                    var top = event.clientY - ($sliderView.offset().top-$(document).scrollTop()) - $mfFloat.height() / 2;
 
                     if (left < 0) {
                         left = 0;
