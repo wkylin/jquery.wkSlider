@@ -253,6 +253,8 @@ body{
     z-index: 2;
     cursor:move;
     display:none;
+    overflow:hidden;
+    border:2px solid #eee;
 }
 .magnifier-box img{
     display:block;

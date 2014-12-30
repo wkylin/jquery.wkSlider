@@ -42,7 +42,8 @@ requirejs([ 'jquery', 'wkSlider'], function ($) {
             showType:true,
             typePosition: "outer",
             magnifier:{
-                "isShow":true
+                "isShow":true,
+                "isMark":false
             }
         });
 
