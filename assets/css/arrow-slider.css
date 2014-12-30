@@ -212,11 +212,13 @@ body{
 
 /* magnifier */
 
-.magnifier-mark{
+
+.magnifier-mark,
+.magnifier-mark-layer{
     width:600px;
     height:203px;
     position:absolute;
-    background-color:#000;
+    background-color:#ff0000;
     opacity:0;
     filter: alpha(opacity=0);
     top:0;
@@ -224,7 +226,18 @@ body{
     z-index: 3;
     cursor:move;
 }
-
+.magnifier-mark-layer{
+    width:600px;
+    height:203px;
+    position:absolute;
+    background-color:#ff0000;
+    opacity:0;
+    filter: alpha(opacity=0);
+    top:0;
+    left:0;
+    z-index: 1;
+    cursor:move;
+}
 .magnifier-box{
     overflow: hidden;
     position: absolute;
@@ -234,11 +247,10 @@ body{
 }
 
 .magnifier-float{
-    background: none repeat scroll 0 0 #ff6600;
-    opacity: 0.5;
-    filter: alpha(opacity=50);
+    opacity: 1;
+    filter: alpha(opacity=100);
     position: absolute;
-    z-index: 1;
+    z-index: 2;
     cursor:move;
     display:none;
 }

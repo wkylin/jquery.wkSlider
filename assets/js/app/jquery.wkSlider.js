@@ -1,6 +1,3 @@
-/**
- * 已知Bug 暂无
- */
 ;
 (function ($) {
     $.fn.wkSlider = function (options) {
@@ -371,9 +368,12 @@
                     $slider.find(".slider-magnifier").remove();
                 }
                 var $curMagnifier=$sliderView.find(".arrow-slider-box").find("li:first");
+                var imgSrc=$curMagnifier.find("img").attr("src");
+
                 var $firstImg=$curMagnifier.find("img:first");
                 var magnifier='<div class="slider-magnifier">'+
-                    '<div class="magnifier-mark"></div>'+
+                    '<div class="magnifier-mark"></div>' +
+                    '<div class="magnifier-mark-layer"></div>'+
                     '<div class="magnifier-float"></div>'+
                     '<div class="magnifier-box">'+
                     '   <img src="'+$firstImg.data("image") + '" width="'+$firstImg.data("img-width")+'" height="'+$firstImg.data("img-height")+'" alt=""/>'+
@@ -385,7 +385,10 @@
                 var $mfMark=$slider.find(".magnifier-mark");
                 var $mfBig=$slider.find(".magnifier-box");
                 var $mfFloat=$slider.find(".magnifier-float");
+                var $mfMarkLayer=$slider.find(".magnifier-mark-layer");
                 var $mfBigImg=$mfBig.find("img");
+
+                $mfFloat.css("background-image","url("+imgSrc +")");
 
                 //由放大镜大小计算放大后的区域的大小
                 var floatW=opts.magnifier.magWidth;
@@ -401,9 +404,11 @@
 
                 $mfMark.hover(function(){
                     clearInterval(scrollTimer);
+                    $mfMarkLayer.css({"opacity":0.5});
                     $mfFloat.css({"width":floatW,"height":floatH}).show();
                     $mfBig.css({"width":magBigWidth,"height":magBigHeight}).show();
                 },function(){
+                    $mfMarkLayer.css({"opacity":0});
                     $mfFloat.hide();
                     $mfBig.hide();
                 });
@@ -429,7 +434,8 @@
                         top = $mfMark.height() - $mfFloat.height();
                     }
 
-                    $mfFloat.css({"left":left,"top":top});
+                    var position=-left + "px " + -top +"px";
+                    $mfFloat.css({"left":left,"top":top,"background-color":"#fff","background-position":position});
 
                     var percentX = left / ($mfMark.width() - $mfFloat.width());
                     var percentY = top / ($mfMark.height() - $mfFloat.height());
