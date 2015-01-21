@@ -35,14 +35,14 @@ requirejs([ 'jquery', 'wkSlider'], function ($) {
         $('#J_mySlider').wkSlider({
             type: 'figure',
             direction: "left",
-            showArrow: true,
+            showArrow: false,
             hoverShowArrow:true,
             auto: false,
             showAmount:false,
             showType:true,
-            typePosition: "outer",
+            typePosition: "inner",
             magnifier:{
-                "isShow":true,
+                "isShow":false,
                 "isMark":false
             }
         });

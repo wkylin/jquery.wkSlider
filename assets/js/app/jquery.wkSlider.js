@@ -99,9 +99,10 @@
                         $($slider.find(".slider-markers li").eq(opts.curPage - 1)).addClass("active-marker");
 
                         // mouseover
-                        $slider.find(".slider-markers").delegate("li", "mouseover", function () {
+                        /*$slider.find(".slider-markers").on("li", "mouseover", function () {
                             clearInterval(scrollTimer);
-                        });
+                            return false;
+                        });*/
 
                         //click
                         $slider.find(".slider-markers").delegate("li", "click", function () {
@@ -152,7 +153,7 @@
                         });
 
                         //mouseout
-                        $slider.find(".slider-markers").delegate("li", "mouseout", function () {
+                        /*$slider.find(".slider-markers").on("li", "mouseout", function () {
                             if (!opts.auto) {
                                 clearInterval(scrollTimer);
                             } else {
@@ -160,7 +161,8 @@
                                     sliderBox($sliderView);
                                 }, opts.interval);
                             }
-                        });
+                            return false;
+                        });*/
                     }();
                 }
             }
