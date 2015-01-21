@@ -18,40 +18,22 @@ requirejs.config({
 });
 
 requirejs([ 'jquery', 'wkSlider'], function ($) {
-    $(function () {
-
-        $('#J_Slider').wkSlider({
-            type: 'figure',
-            showType:true,
-            typePosition: "outer",
-            magnifier:{
-                "isShow":true,
-                "azimuth":"left",
-                "magWidth":"150",
-                "magHeight":"100"
-            }
-        });
-
+     $(function () {
         $('#J_mySlider').wkSlider({
             type: 'figure',
             direction: "left",
-            showArrow: false,
-            hoverShowArrow:true,
-            auto: false,
-            showAmount:false,
-            showType:true,
-            typePosition: "inner",
-            magnifier:{
-                "isShow":false,
-                "isMark":false
-            }
-        });
-
-        $('#J_SliderText').wkSlider({
-            showArrow: false,
+            showArrow: true,
+            hoverShowArrow:false,
+            auto: true,
+            showAlt:false,
+            showAmount:true,
             showType:false,
+            azimuth:"top",
             typePosition: "outer",
-            auto:false
+            magnifier:{
+                "isShow":true,
+                "isMark":true
+            }
         });
     });
 });
