@@ -14,6 +14,10 @@
             var mo = len % opts.offsetSize;
             var num = opts.offsetSize - mo;
 
+            //获取图片的宽和高
+            var itemWidth = $sliderItem.find("img").attr("width");
+            var itemHeight = $sliderItem.find("img").attr("height");
+
             //不足1页时自动补足
             if (mo != 0 || len < opts.showSize) {
                 $sliderUl.find("li:lt(" + num + ")").clone().appendTo($sliderUl);
@@ -30,7 +34,7 @@
             }
 
             var totalSize = $sliderUl.find("li").size();
-            var width = ($sliderItem.outerWidth(true) + opts.itemPadding) * opts.showSize - opts.itemPadding;
+            var width = (itemWidth + opts.itemPadding) * opts.showSize - opts.itemPadding;
 
             $sliderUl.find("li").css({"padding-right": opts.itemPadding}).each(function (index, ele) {
                 $(ele).attr("data-item", "item" + index);
@@ -48,13 +52,14 @@
                     fullPage();
                 });
             } else {
-                $sliderUl.width(($sliderItem.outerWidth(true) + opts.itemPadding) * totalSize).height($sliderItem.outerHeight(true));
-                $sliderView.height($sliderItem.outerHeight(true)).width(width);
-                $slider.width(width);
+                $sliderUl.width((itemWidth + opts.itemPadding) * totalSize).height(itemHeight);
+                $sliderView.height(itemHeight).width(itemWidth);
+                $slider.width(itemWidth);
+
             }
 
             //显示类型
-            $slider.addClass("slider-" + opts.type).addClass("slider-" + opts.typePosition).addClass("slider-azimuth-"+opts.azimuth);
+            $slider.addClass("slider-" + opts.type).addClass("slider-" + opts.typePosition).addClass("slider-azimuth-" + opts.azimuth);
 
             //总数及页数
             var $currentPage;
@@ -75,7 +80,7 @@
                     var caption = $img.attr('alt');
                     if (caption && opts.showAlt) {
                         caption = $('<div class="slider-tips">' + caption + '</div>');
-                        caption.appendTo($(slide)).width($img.outerWidth(true));
+                        caption.appendTo($(slide)).width($img.width());
                     }
                 });
             }();
@@ -190,13 +195,15 @@
             var $prevBtn = $slider.find(".arrow-slider-left");
             var $nextBtn = $slider.find(".arrow-slider-right");
             var arrowTop = parseInt(($sliderItem.outerHeight(true) - $prevBtn.outerHeight(true)) / 2);
-            if(opts.azimuth !="top"){
+            if (opts.azimuth != "top") {
                 $prevBtn.css({"top": arrowTop, "left": $prevBtn.outerWidth(true) / 3});
                 $nextBtn.css({"top": arrowTop, "right": $prevBtn.outerWidth(true) / 3});
-            }else{
-                var sliderIll='<div class="slider-illustration"></div>';
+            } else {
+                var sliderIll = '<div class="slider-illustration"></div>';
+                var sliderIllBox = '<div class="slider-ill-box"></div>';
                 $(sliderIll).appendTo($slider);
-                var illText=$sliderUl.find("li:first").find("img").attr("alt");
+                $(sliderIllBox).appendTo($slider);
+                var illText = $sliderUl.find("li:first").find("img").attr("alt");
                 $slider.find(".slider-illustration").empty().text(illText);
             }
 
@@ -294,7 +301,7 @@
                             }
 
                             //slider-illustration
-                            var illText=$sliderUl.find("li:first").find("img").attr("alt");
+                            var illText = $sliderUl.find("li:first").find("img").attr("alt");
                             $slider.find(".slider-illustration").empty().text(illText);
                         });
                         if ($slider.find(".slider-current-page").size() > 0) {
@@ -331,7 +338,7 @@
                             }
 
                             //slider-illustration
-                            var illText=$sliderUl.find("li:first").find("img").attr("alt");
+                            var illText = $sliderUl.find("li:first").find("img").attr("alt");
                             $slider.find(".slider-illustration").empty().text(illText);
                         });
 
@@ -366,108 +373,117 @@
 
             //放大镜函数
             function magnifier() {
-                if ($slider.find(".slider-magnifier").size() > 0) {
-                    $slider.find(".slider-magnifier").remove();
-                }
                 var $curMagnifier = $sliderView.find(".arrow-slider-box").find("li:first");
-                var imgSrc = $curMagnifier.find("img").attr("src");
-
                 var $firstImg = $curMagnifier.find("img:first");
-                var magnifier = '<div class="slider-magnifier">' +
-                    '<div class="magnifier-mark"></div>';
-                if (opts.magnifier.isMark) {
-                    magnifier += '<div class="magnifier-mark-layer"></div>';
-                }
-
-                magnifier += '<div class="magnifier-float"></div>' +
-                    '<div class="magnifier-box">' +
-                    '   <img src="' + $firstImg.data("image") + '" width="' + $firstImg.data("img-width") + '" height="' + $firstImg.data("img-height") + '" alt=""/>' +
-                    '</div>' +
-                    '</div>';
-
-                $(magnifier).appendTo($slider);
-
-                var $mfMark = $slider.find(".magnifier-mark");
-                var $mfBig = $slider.find(".magnifier-box");
-                var $mfFloat = $slider.find(".magnifier-float");
-                var $mfMarkLayer = $slider.find(".magnifier-mark-layer");
-                var $mfBigImg = $mfBig.find("img");
-                if ($slider.find(".magnifier-mark-layer").size() > 0) {
-                    $mfFloat.css("background-image", "url(" + imgSrc + ")");
-                }
-
-
-                //由放大镜大小计算放大后的区域的大小
-                var floatW = opts.magnifier.magWidth;
-                var floatH = opts.magnifier.magHeight;
-
-                var smallImgWidth = $curMagnifier.outerWidth(true);
-                var bigImgWidth = $mfBigImg.outerWidth(true);
-
-                var magBigWidth = floatW * bigImgWidth / smallImgWidth;
-                var magBigHeight = floatH * bigImgWidth / smallImgWidth;
-
-
-                $mfMark.hover(function () {
-                    clearInterval(scrollTimer);
-                    if ($slider.find(".magnifier-mark-layer").size() > 0) {
-                        $slider.find(".magnifier-mark-layer").css({"opacity": 0.5});
+                if ($firstImg.data("image")) {
+                    if ($slider.find(".slider-magnifier").size() > 0) {
+                        $slider.find(".slider-magnifier").remove();
                     }
-                    $mfFloat.css({"width": floatW, "height": floatH}).show();
-                    $mfBig.css({"width": magBigWidth, "height": magBigHeight}).show();
-                }, function () {
-                    if ($slider.find(".magnifier-mark-layer").size() > 0) {
-                        $slider.find(".magnifier-mark-layer").css({"opacity": 0});
+
+                    var imgSrc = $curMagnifier.find("img").attr("src");
+
+                    var magnifier = '<div class="slider-magnifier">' +
+                        '<div class="magnifier-mark"></div>';
+                    if (opts.magnifier.isMark) {
+                        magnifier += '<div class="magnifier-mark-layer"></div>';
                     }
-                    $mfFloat.hide();
-                    $mfBig.hide();
-                    if (!opts.auto) {
+
+
+                    magnifier += '<div class="magnifier-float"></div>' +
+                        '<div class="magnifier-box">' +
+                        '   <img src="' + $firstImg.data("image") + '" width="' + $firstImg.data("img-width") + '" height="' + $firstImg.data("img-height") + '" alt=""/>' +
+                        '</div>' +
+                        '</div>';
+
+                    $(magnifier).appendTo($slider);
+
+                    var $mfMark = $slider.find(".magnifier-mark");
+                    var $mfBig = $slider.find(".magnifier-box");
+                    var $mfFloat = $slider.find(".magnifier-float");
+                    var $mfMarkLayer = $slider.find(".magnifier-mark-layer");
+                    var $mfBigImg = $mfBig.find("img");
+                    if ($slider.find(".magnifier-mark-layer").size() > 0) {
+                        $mfFloat.css("background-image", "url(" + imgSrc + ")");
+                    }
+
+                    //由放大镜大小计算放大后的区域的大小
+                    var floatW = opts.magnifier.magWidth;
+                    var floatH = opts.magnifier.magHeight;
+
+                    var smallImgWidth = $curMagnifier.outerWidth(true);
+                    var bigImgWidth = $mfBigImg.outerWidth(true);
+
+                    var magBigWidth = floatW * bigImgWidth / smallImgWidth;
+                    var magBigHeight = floatH * bigImgWidth / smallImgWidth;
+
+
+                    $mfMark.hover(function () {
                         clearInterval(scrollTimer);
+                        if ($slider.find(".magnifier-mark-layer").size() > 0) {
+                            $slider.find(".magnifier-mark-layer").css({"opacity": 0.5});
+                        }
+                        $mfFloat.css({"width": floatW, "height": floatH}).show();
+                        $mfBig.css({"width": magBigWidth, "height": magBigHeight}).show();
+                    }, function () {
+                        if ($slider.find(".magnifier-mark-layer").size() > 0) {
+                            $slider.find(".magnifier-mark-layer").css({"opacity": 0});
+                        }
+                        $mfFloat.hide();
+                        $mfBig.hide();
+                        if (!opts.auto) {
+                            clearInterval(scrollTimer);
+                        } else {
+                            scrollTimer = setInterval(function () {
+                                sliderBox($sliderView);
+                            }, opts.interval);
+                        }
+                    });
+
+                    if (opts.magnifier.azimuth == "left") {
+                        $mfBig.css({"left": -(magBigWidth + 10)});
                     } else {
-                        scrollTimer = setInterval(function () {
-                            sliderBox($sliderView);
-                        }, opts.interval);
+                        $mfBig.css({"left": ($curMagnifier.outerWidth(true) + 10)});
                     }
-                });
+                    $mfMark.on("mousemove", function (event) {
+                        var left = event.clientX - ($sliderView.offset().left - $(document).scrollLeft()) - $mfFloat.outerWidth(true) / 2;
+                        var top = event.clientY - ($sliderView.offset().top - $(document).scrollTop()) - $mfFloat.outerHeight(true) / 2;
 
-                if (opts.magnifier.azimuth == "left") {
-                    $mfBig.css({"left": -(magBigWidth + 10)});
-                } else {
-                    $mfBig.css({"left": ($curMagnifier.outerWidth(true) + 10)});
-                }
-                $mfMark.on("mousemove", function (event) {
-                    var left = event.clientX - ($sliderView.offset().left - $(document).scrollLeft()) - $mfFloat.outerWidth(true) / 2;
-                    var top = event.clientY - ($sliderView.offset().top - $(document).scrollTop()) - $mfFloat.outerHeight(true) / 2;
+                        if (left < 0) {
+                            left = 0;
+                        } else if (left > ($mfMark.outerWidth(true) - $mfFloat.outerWidth(true))) {
+                            left = $mfMark.outerWidth(true) - $mfFloat.outerWidth(true);
+                        }
 
-                    if (left < 0) {
-                        left = 0;
-                    } else if (left > ($mfMark.outerWidth(true) - $mfFloat.outerWidth(true))) {
-                        left = $mfMark.outerWidth(true) - $mfFloat.outerWidth(true);
-                    }
+                        if (top < 0) {
+                            top = 0;
+                        } else if (top > ($mfMark.outerHeight(true) - $mfFloat.outerHeight(true))) {
+                            top = $mfMark.outerHeight(true) - $mfFloat.outerHeight(true);
+                        }
 
-                    if (top < 0) {
-                        top = 0;
-                    } else if (top > ($mfMark.outerHeight(true) - $mfFloat.outerHeight(true))) {
-                        top = $mfMark.outerHeight(true) - $mfFloat.outerHeight(true);
-                    }
-
-                    //计算背景位置
+                        //计算背景位置
 //                    var border=$mfFloat.css("border-width");
 //                    console.log(border);
-                    var position = -left + "px " + -top + "px";
-                    $mfFloat.css({"left": left, "top": top});
+                        var position = -left + "px " + -top + "px";
+                        $mfFloat.css({"left": left, "top": top});
 
-                    if ($slider.find(".magnifier-mark-layer").size() > 0) {
-                        $mfFloat.css({"background-color": "#000", "background-position": position});
-                    } else {
-                        $mfFloat.css({"background-color": "transparent", "background-image": "url(image/mf-mark.png)"});
-                    }
-                    var percentX = left / ($mfMark.outerWidth(true) - $mfFloat.outerWidth(true));
-                    var percentY = top / ($mfMark.outerHeight(true) - $mfFloat.outerHeight(true));
+                        if ($slider.find(".magnifier-mark-layer").size() > 0) {
+                            $mfFloat.css({"background-color": "#000", "background-position": position});
+                        } else {
+                            $mfFloat.css({"background-color": "#fff"});
+                        }
+                        var percentX = left / ($mfMark.outerWidth(true) - $mfFloat.outerWidth(true));
+                        var percentY = top / ($mfMark.outerHeight(true) - $mfFloat.outerHeight(true));
 
-                    $mfBigImg.css({"left": -percentX * ($mfBigImg.outerWidth(true) - $mfBig.outerWidth(true)), "top": -percentY * ($mfBigImg.outerHeight(true) - $mfBig.outerHeight(true))});
+                        $mfBigImg.css({"left": -percentX * ($mfBigImg.outerWidth(true) - $mfBig.outerWidth(true)), "top": -percentY * ($mfBigImg.outerHeight(true) - $mfBig.outerHeight(true))});
 
-                });
+                    });
+                }else{
+//                    $slider.find(".arrow-slider-left").hide();
+//                    $slider.find(".arrow-slider-right").hide();
+//                    $slider.find(".slider-total").hide();
+//                    $slider.find(".slider-illustration").width(itemWidth-40).css({"left":"20px"});
+
+                }
             }
 
 
@@ -488,7 +504,7 @@
                         }
 
                         //.slider-illustration
-                        var illText=$sliderUl.find("li:first").find("img").attr("alt");
+                        var illText = $sliderUl.find("li:first").find("img").attr("alt");
                         $slider.find(".slider-illustration").empty().text(illText);
                     });
                     if (pageNum == Math.ceil(totalSize / opts.showSize)) {
@@ -510,7 +526,7 @@
                         }
 
                         //.slider-illustration
-                        var illText=$sliderUl.find("li:first").find("img").attr("alt");
+                        var illText = $sliderUl.find("li:first").find("img").attr("alt");
                         $slider.find(".slider-illustration").empty().text(illText);
                     });
 
@@ -544,6 +560,7 @@
         showArrow: true,
         hoverShowArrow: true,
         showAmount: false,
+        azimuth: "top",
         showType: true, //show type
         typePosition: "inner", //outer
         magnifier: {
@@ -555,4 +572,3 @@
         }
     };
 })(jQuery);
-
