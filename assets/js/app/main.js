@@ -8,31 +8,31 @@ requirejs.config({
     }
 });
 // 非AMD模块配置
-requirejs.config({
+/*requirejs.config({
     shim: {
         'wkSlider': {
             deps: ['jquery'],
             exports: 'jQuery.fn.wkSlider'
         }
     }
-});
+});*/
 
-requirejs([ 'jquery', 'wkSlider'], function ($) {
-     $(function () {
+requirejs(['jquery', 'wkSlider'], function ($) {
+    $(function () {
         $('#J_mySlider').wkSlider({
             type: 'figure',
             direction: "left",
             showArrow: true,
-            hoverShowArrow:false,
+            hoverShowArrow: false,
             auto: true,
-            showAlt:false,
-            showAmount:true,
-            showType:false,
-            azimuth:"top",
+            showAlt: false,
+            showAmount: true,
+            showType: false,
+            azimuth: "top",
             typePosition: "outer",
-            magnifier:{
-                "isShow":true,
-                "isMark":true
+            magnifier: {
+                "isShow": true,
+                "isMark": true
             }
         });
     });

@@ -1,7 +1,8 @@
-body{
-    padding:0;
-    margin:0;
+body {
+    padding: 0;
+    margin: 0;
 }
+
 .arrow-slider-content {
     position: relative;
     padding: 0;
@@ -56,7 +57,7 @@ body{
     margin: 0;
     cursor: pointer;
     background: url(../image/arrow-slider-icons.png) 0 0 no-repeat transparent;
-    display:none;
+    display: none;
     font-size: 0;
     line-height: 0;
     z-index: 9999;
@@ -110,35 +111,33 @@ body{
     padding: 0 10px 0 0;
 }
 
-
-
- .slider-markers-box {
+.slider-markers-box {
     width: 100%;
     text-align: center;
     overflow: hidden;
     padding: 10px 0;
 }
 
- .slider-markers {
+.slider-markers {
     float: left;
     position: relative;
     left: 50%;
     padding: 0;
     margin: 0;
     list-style: none;
-    text-align:center;
+    text-align: center;
 }
 
-.slider-markers li{
+.slider-markers li {
     font-size: 12px;
     overflow: hidden;
-    cursor:pointer;
+    cursor: pointer;
     list-style: none;
     float: left;
     margin: 5px;
     position: relative;
     right: 50%;
-    text-align:center;
+    text-align: center;
 }
 
 .slider-inner .slider-markers-box {
@@ -172,11 +171,11 @@ body{
 
 .slider-figure .slider-markers li {
     height: 16px;
-    padding:0 5px;
+    padding: 0 5px;
     line-height: 16px;
     border: solid 1px #eee;
     background-color: #eee;
-    color:#000;
+    color: #000;
     z-index: 10;
 }
 
@@ -186,13 +185,12 @@ body{
     border: 1px solid #952210;
 }
 
-
 /* slider-rectangle */
 .slider-rectangle .slider-markers li {
     width: 50px;
     height: 5px;
-    text-indent:-9999em;
-    background-color:#666;
+    text-indent: -9999em;
+    background-color: #666;
     border: solid 1px #666;
 }
 
@@ -201,34 +199,36 @@ body{
     background-color: #952210;
     border: 1px solid #952210;
 }
-.arrow-slider .slider-text{
-    padding:10px;
+
+.arrow-slider .slider-text {
+    padding: 10px;
     word-break: break-all;
     word-wrap: break-word;
 }
 
 /* slider-top */
-.slider-azimuth-top .arrow-slider-left{
-    top:-100px;
-    left:5px;
-}
-.slider-azimuth-top .arrow-slider-right{
-    top:-100px;
-    right:5px;
+.slider-azimuth-top .arrow-slider-left {
+    top: -100px;
+    left: 5px;
 }
 
-.slider-azimuth-top .slider-total{
-    top:-100px;
-    left:60px;
-    color:#000;
-    font-size:14px;
+.slider-azimuth-top .arrow-slider-right {
+    top: -100px;
+    right: 5px;
 }
 
-.slider-azimuth-top .slider-current-page{
-    font-size:18px;
+.slider-azimuth-top .slider-total {
+    top: -100px;
+    left: 60px;
+    color: #000;
+    font-size: 14px;
 }
 
-.slider-azimuth-top .slider-illustration{
+.slider-azimuth-top .slider-current-page {
+    font-size: 18px;
+}
+
+.slider-azimuth-top .slider-illustration {
     background-color: #aaa;
     color: #fff;
     height: 100px;
@@ -240,47 +240,50 @@ body{
 
 /* magnifier */
 .magnifier-mark,
-.magnifier-mark-layer{
-    width:600px;
-    height:203px;
-    position:absolute;
-    background-color:#ff0000;
-    opacity:0;
+.magnifier-mark-layer {
+    width: 600px;
+    height: 203px;
+    position: absolute;
+    background-color: #ff0000;
+    opacity: 0;
     filter: alpha(opacity=0);
-    top:0;
-    left:0;
+    top: 0;
+    left: 0;
     z-index: 3;
-    cursor:move;
+    cursor: move;
 }
-.magnifier-mark-layer{
-    width:600px;
-    height:203px;
-    position:absolute;
-    background-color:#ff0000;
-    opacity:0;
+
+.magnifier-mark-layer {
+    width: 600px;
+    height: 203px;
+    position: absolute;
+    background-color: #ff0000;
+    opacity: 0;
     filter: alpha(opacity=0);
-    top:0;
-    left:0;
+    top: 0;
+    left: 0;
     z-index: 1;
-    cursor:move;
+    cursor: move;
 }
-.magnifier-box{
+
+.magnifier-box {
     overflow: hidden;
     position: absolute;
     top: 0;
     z-index: 1;
-    display:none;
+    display: none;
 }
 
-.magnifier-float{
+.magnifier-float {
     opacity: 1;
     filter: alpha(opacity=100);
     position: absolute;
     z-index: 2;
-    cursor:move;
-    display:none;
+    cursor: move;
+    display: none;
 }
-.magnifier-box img{
-    display:block;
-    position:absolute;
+
+.magnifier-box img {
+    display: block;
+    position: absolute;
 }
